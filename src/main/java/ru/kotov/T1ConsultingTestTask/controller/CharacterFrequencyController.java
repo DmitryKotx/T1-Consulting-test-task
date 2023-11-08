@@ -1,5 +1,10 @@
 package ru.kotov.T1ConsultingTestTask.controller;
 
+
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +22,19 @@ public class CharacterFrequencyController {
 
     private final CharacterFrequencyService service;
     @GetMapping("/character-frequencies")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = @Content(examples = @ExampleObject(
+                            value = "[{\"character\":\"a\",\"frequency\":4}," +
+                                    "{\"character\":\"b\",\"frequency\":3}]"))),
+            @ApiResponse(responseCode = "400", description = """
+            The ignoreCase parameter must be true or false.
+            
+            The length of the input string should be no more than 10000 characters.
+            
+            The input string must not be empty
+            and must not contain the following characters: [, ], {, }, ^, |""",
+            content = @Content(examples = @ExampleObject("The ignoreCase parameter must be true or false")))
+    })
     public ResponseEntity<List<CharacterFrequency>> getCharacterFrequencies(
             @RequestParam("inputString") String inputString,
             @RequestParam(name = "ignoreCase", required = false, defaultValue = "false") String ignoreCase)
