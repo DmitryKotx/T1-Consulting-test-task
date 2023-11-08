@@ -54,8 +54,8 @@ public class CharacterFrequencyService {
 
     public void validate (String inputString) throws InvalidInputStringFormatException {
         if(inputString.isEmpty()) {
-            throw new InvalidInputStringFormatException("The input string should not be empty" +
-                    " and use the following characters: [, ], {, }, ^, |");
+            throw new InvalidInputStringFormatException("The input string must not be empty" +
+                    " and must not contain the following characters: [, ], {, }, ^, |");
         }
         if(inputString.length() > 10000) {
             throw new InvalidInputStringFormatException("The length of the input string should be" +
