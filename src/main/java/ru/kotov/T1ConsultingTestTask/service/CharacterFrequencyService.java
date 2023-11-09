@@ -56,9 +56,9 @@ public class CharacterFrequencyService {
         if(inputString.isEmpty()) {
             throw new InvalidInputStringFormatException("The input string must not be empty.");
         }
-        if(inputString.length() > 5000) {
-            throw new InvalidInputStringFormatException("The length of the input string should be" +
-                    " no more than 5000 characters.");
+        if(inputString.length() >= 5000) {
+            throw new InvalidInputStringFormatException("The length of the input string must be" +
+                    " less than 5000 characters.");
         }
     }
 }

@@ -33,7 +33,7 @@ public class CharacterFrequencyController {
                
                 The input string must not be empty.
             
-                The length of the input string should be no more than 5000 characters.""",
+                The length of the input string must be less than 5000 characters.""",
             content = @Content(examples = @ExampleObject("The ignoreCase parameter must be true or false")))
     })
     public ResponseEntity<List<CharacterFrequency>> getCharacterFrequencies(
