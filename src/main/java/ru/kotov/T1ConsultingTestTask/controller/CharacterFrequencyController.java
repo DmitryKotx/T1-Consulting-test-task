@@ -1,6 +1,7 @@
 package ru.kotov.T1ConsultingTestTask.controller;
 
 
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,12 +24,13 @@ public class CharacterFrequencyController {
     private final CharacterFrequencyService service;
     @GetMapping("/character-frequencies")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = @Content(examples = @ExampleObject(
-                            value = "[{\"character\":\"a\",\"frequency\":4}," +
-                                    "{\"character\":\"b\",\"frequency\":3}]"))),
-            @ApiResponse(responseCode = "400", description = """
+        @ApiResponse(responseCode = "200",
+            content = @Content(examples = @ExampleObject(
+            value = "[{\"character\":\"a\",\"frequency\":4}," +
+                            "{\"character\":\"b\",\"frequency\":3}]"))),
+        @ApiResponse(responseCode = "400", description = """
             All types of responses with a status of 400:
-            
+                
                 The ignoreCase parameter must be true or false.
                
                 The input string must not be empty.
@@ -37,6 +39,10 @@ public class CharacterFrequencyController {
             content = @Content(examples = @ExampleObject("The ignoreCase parameter must be true or false")))
     })
     public ResponseEntity<List<CharacterFrequency>> getCharacterFrequencies(
+            @Parameter(description = """
+                    If you are using postman or the browser address bar,
+                     it is recommended not to use the following characters: [, ], {, }, |, ^, &
+                    """)
             @RequestParam("inputString") String inputString,
             @RequestParam(name = "ignoreCase", required = false, defaultValue = "false") String ignoreCase)
             throws InvalidParameterFormatException, InvalidInputStringFormatException {
