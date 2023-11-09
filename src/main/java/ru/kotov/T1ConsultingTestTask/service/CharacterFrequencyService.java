@@ -19,7 +19,7 @@ public class CharacterFrequencyService {
         } else if (ignoreCase.equals("true")) {
             return getCharacterFrequenciesIgnoreCase(inputString);
         } else {
-            throw new InvalidParameterFormatException("The ignoreCase parameter must be true or false");
+            throw new InvalidParameterFormatException("The ignoreCase parameter must be true or false.");
         }
     }
 
@@ -54,12 +54,11 @@ public class CharacterFrequencyService {
 
     public void validate (String inputString) throws InvalidInputStringFormatException {
         if(inputString.isEmpty()) {
-            throw new InvalidInputStringFormatException("The input string must not be empty" +
-                    " and must not contain the following characters: [, ], {, }, ^, |");
+            throw new InvalidInputStringFormatException("The input string must not be empty.");
         }
-        if(inputString.length() > 10000) {
+        if(inputString.length() > 5000) {
             throw new InvalidInputStringFormatException("The length of the input string should be" +
-                    " no more than 10000 characters");
+                    " no more than 5000 characters.");
         }
     }
 }

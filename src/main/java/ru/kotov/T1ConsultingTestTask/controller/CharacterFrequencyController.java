@@ -27,12 +27,13 @@ public class CharacterFrequencyController {
                             value = "[{\"character\":\"a\",\"frequency\":4}," +
                                     "{\"character\":\"b\",\"frequency\":3}]"))),
             @ApiResponse(responseCode = "400", description = """
-            The ignoreCase parameter must be true or false.
+            All types of responses with a status of 400:
             
-            The length of the input string should be no more than 10000 characters.
+                The ignoreCase parameter must be true or false.
+               
+                The input string must not be empty.
             
-            The input string must not be empty
-            and must not contain the following characters: [, ], {, }, ^, |""",
+                The length of the input string should be no more than 5000 characters.""",
             content = @Content(examples = @ExampleObject("The ignoreCase parameter must be true or false")))
     })
     public ResponseEntity<List<CharacterFrequency>> getCharacterFrequencies(
